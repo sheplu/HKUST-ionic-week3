@@ -154,10 +154,13 @@ angular.module('conFusion.controllers', [])
     };
 }])
 
-.controller('DishDetailController', ['$scope', '$stateParams', 'menuFactory', 'favoriteFactory', 'baseURL', '$ionicPopover', '$ionicModal', function($scope, $stateParams, menuFactory, favoriteFactory, baseURL, $ionicPopover, $ionicModal) {
+.controller('DishDetailController', ['$scope', '$stateParams', 'dish',
+'menuFactory', 'favoriteFactory', 'baseURL', '$ionicPopover', '$ionicModal',
+function ($scope, $stateParams, dish, menuFactory, favoriteFactory, baseURL,
+  $ionicPopover, $ionicModal) {
 
     $scope.baseURL = baseURL;
-    $scope.dish = {};
+    $scope.dish = dish;
     $scope.showDish = false;
     $scope.message="Loading ...";
 
@@ -298,12 +301,18 @@ angular.module('conFusion.controllers', [])
 
 }])
 
-.controller('FavoritesController', ['$scope', 'menuFactory', 'favoriteFactory',
-'baseURL', '$ionicListDelegate', '$ionicPopup', '$ionicLoading', '$timeout',
-function ($scope, menuFactory, favoriteFactory, baseURL, $ionicListDelegate,
-  $ionicPopup, $ionicLoading, $timeout) {
+.controller('FavoritesController', ['$scope', 'dishes', 'favorites',
+'favoriteFactory', 'baseURL', '$ionicListDelegate', '$ionicPopup',
+'$ionicLoading', '$timeout', function ($scope, dishes, favorites,
+  favoriteFactory, baseURL, $ionicListDelegate, $ionicPopup, $ionicLoading,
+  $timeout) {
+
     $scope.baseURL = baseURL;
     $scope.shouldShowDelete = false;
+
+    $scope.favorites = favorites;
+
+    $scope.dishes = dishes;
 
     $ionicLoading.show({
         template: '<ion-spinner></ion-spinner> Loading...'
