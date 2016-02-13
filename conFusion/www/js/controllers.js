@@ -80,7 +80,7 @@ angular.module('conFusion.controllers', [])
     $scope.showMenu = false;
     $scope.message = "Loading ...";
 
-    menuFactory.getDishes().query(
+    menuFactory.query(
         function(response) {
             $scope.dishes = response;
             $scope.showMenu = true;
@@ -161,7 +161,7 @@ angular.module('conFusion.controllers', [])
     $scope.showDish = false;
     $scope.message="Loading ...";
 
-    $scope.dish = menuFactory.getDishes().get({id:parseInt($stateParams.id,10)})
+    $scope.dish = menuFactory.get({id:parseInt($stateParams.id,10)})
     .$promise.then(
                     function(response){
                         $scope.dish = response;
@@ -251,7 +251,7 @@ angular.module('conFusion.controllers', [])
         console.log($scope.mycomment);
 
         $scope.dish.comments.push($scope.mycomment);
-        menuFactory.getDishes().update({id:$scope.dish.id},$scope.dish);
+        menuFactory.update({id:$scope.dish.id},$scope.dish);
 
         $scope.commentForm.$setPristine();
 
@@ -267,7 +267,7 @@ angular.module('conFusion.controllers', [])
       $scope.leader = corporateFactory.get({id:3});
       $scope.showDish = false;
       $scope.message="Loading ...";
-      $scope.dish = menuFactory.getDishes().get({id:0})
+      $scope.dish = menuFactory.get({id:0})
       .$promise.then(
           function(response){
               $scope.dish = response;
@@ -301,7 +301,7 @@ function ($scope, menuFactory, favoriteFactory, baseURL, $ionicListDelegate,
 
     $scope.favorites = favoriteFactory.getFavorites();
 
-    $scope.dishes = menuFactory.getDishes().query(
+    $scope.dishes = menuFactory.query(
       function (response) {
           $scope.dishes = response;
           $timeout(function () {
