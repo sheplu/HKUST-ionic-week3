@@ -265,19 +265,19 @@ function ($scope, $stateParams, dish, menuFactory, favoriteFactory, baseURL,
 
 // implement the IndexController and About Controller here
 
-.controller('IndexController', ['$scope', 'menuFactory', 'promotionFactory', 'corporateFactory', 'baseURL', function ($scope, menuFactory, promotionFactory, corporateFactory, baseURL) {
+.controller('IndexController', ['$scope', 'menuFactory', 'promotionFactory',
+'corporateFactory', 'promotion', 'leader', 'dish', 'baseURL', function ($scope,
+  menuFactory, promotionFactory, corporateFactory, promotion, leader,
+  dish, baseURL) {
 
     $scope.baseURL = baseURL;
-    $scope.leader = corporateFactory.get({
-        id: 3
-    });
+    //$scope.leader = corporateFactory.get({id: 3});
+    $scope.leader = leader
 
     $scope.showDish = false;
     $scope.message = "Loading ...";
 
-    $scope.dish = menuFactory.get({
-            id: 0
-        })
+    /*$scope.dish = menuFactory.get({id: 0})
         .$promise.then(
             function (response) {
                 $scope.dish = response;
@@ -287,10 +287,10 @@ function ($scope, $stateParams, dish, menuFactory, favoriteFactory, baseURL,
                 $scope.message = "Error: " + response.status + " " + response.statusText;
             }
         );
-
-    $scope.promotion = promotionFactory.get({
-        id: 0
-    });
+    */
+    $scope.dish = dish;
+    //$scope.promotion = promotionFactory.get({id: 0});
+    $scope.promotion = promotion
 
 }])
 
