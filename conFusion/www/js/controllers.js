@@ -294,10 +294,11 @@ function ($scope, $stateParams, dish, menuFactory, favoriteFactory, baseURL,
 
 }])
 
-.controller('AboutController', ['$scope', 'corporateFactory', 'baseURL', function($scope, corporateFactory, baseURL) {
+.controller('AboutController', ['$scope', 'corporateFactory', 'leaders', 'baseURL', function($scope, corporateFactory, leaders, baseURL) {
 
     $scope.baseURL = baseURL;
-    $scope.leaders = corporateFactory.query();
+    $scope.leaders = leaders
+    //$scope.leaders = corporateFactory.query();
     console.log($scope.leaders);
 
 }])
