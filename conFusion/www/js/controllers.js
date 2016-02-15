@@ -304,18 +304,18 @@ function ($scope, $stateParams, dish, menuFactory, favoriteFactory, baseURL,
 
 }])
 
-.controller('FavoritesController', ['$scope', 'dishes', 'favorites',
+.controller('FavoritesController', ['$scope', 'dishes', 'favorites', "menuFactory",
 'favoriteFactory', 'baseURL', '$ionicListDelegate', '$ionicPopup',
-'$ionicLoading', '$timeout', function ($scope, dishes, favorites,
+'$ionicLoading', '$timeout', function ($scope, dishes, favorites, menuFactory,
   favoriteFactory, baseURL, $ionicListDelegate, $ionicPopup, $ionicLoading,
   $timeout) {
+  $scope.baseURL = baseURL;
+  $scope.shouldShowDelete = false;
 
-    $scope.baseURL = baseURL;
-    $scope.shouldShowDelete = false;
+  $scope.favorites = favorites;
 
-    $scope.favorites = favorites;
+  $scope.dishes = dishes;
 
-    $scope.dishes = dishes;
 
     $ionicLoading.show({
         template: '<ion-spinner></ion-spinner> Loading...'
@@ -336,6 +336,7 @@ function ($scope, $stateParams, dish, menuFactory, favoriteFactory, baseURL,
               $ionicLoading.hide();
           }, 1000);
     });
+
     console.log($scope.dishes, $scope.favorites);
 
     $scope.toggleDelete = function () {
@@ -344,7 +345,6 @@ function ($scope, $stateParams, dish, menuFactory, favoriteFactory, baseURL,
     }
 
     $scope.deleteFavorite = function (index) {
-
         var confirmPopup = $ionicPopup.confirm({
             title: 'Confirm Delete',
             template: 'Are you sure you want to delete this item?'
