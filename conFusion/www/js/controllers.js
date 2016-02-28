@@ -352,7 +352,7 @@ function ($scope, $stateParams, dish, menuFactory, favoriteFactory, baseURL,
 
         confirmPopup.then(function (res) {
             if (res) {
-                console.log('Ok to delete');
+                console.log('Ok to delete' + index + "aa");
                 favoriteFactory.deleteFromFavorites(index);
             } else {
                 console.log('Canceled delete');
